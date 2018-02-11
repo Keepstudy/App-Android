@@ -59,8 +59,5 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Resources resources
-        newsFeed = (ListView) findViewById(R.id.newsFeed);
-        items =
     }
 }

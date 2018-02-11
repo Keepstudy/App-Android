@@ -4,7 +4,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/feedFotoPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -16,38 +16,58 @@
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/feedNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView"
+        android:layout_alignTop="@+id/feedFotoPerfil"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_toEndOf="@+id/imageView"
-        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/feedFotoPerfil"
+        android:layout_toRightOf="@+id/feedFotoPerfil"
         android:text="TextView"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/feedObjetivo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
+        android:layout_alignBottom="@+id/feedFotoPerfil"
+        android:layout_alignLeft="@+id/feedNome"
+        android:layout_alignStart="@+id/feedNome"
         android:layout_marginBottom="8dp"
         android:text="TextView" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/feedPostagemImagem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView"
-        android:layout_below="@+id/imageView"
+        android:layout_alignLeft="@+id/feedFotoPerfil"
+        android:layout_alignStart="@+id/feedFotoPerfil"
+        android:layout_below="@+id/feedFotoPerfil"
         android:layout_marginTop="16dp"
         android:adjustViewBounds="false"
-        android:cropToPadding="false"
+        android:scaleType="center"
         app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/feedDataRefeicao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/feedPostagemImagem"
+        android:layout_alignStart="@+id/feedPostagemImagem"
+        android:layout_below="@+id/feedPostagemImagem"
+        android:layout_marginTop="18dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/feedCalorias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/feedDataRefeicao"
+        android:layout_alignStart="@+id/feedDataRefeicao"
+        android:layout_below="@+id/feedDataRefeicao"
+        android:layout_marginTop="18dp"
+        android:text="TextView" />
 
 </RelativeLayout>

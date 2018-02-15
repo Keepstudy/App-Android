@@ -52,9 +52,57 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             jsonData = connection.getJSONData();
+            getItems("items", jsonData);
         } catch (Exception e) {
+            Log.d("debugPrint", "cant print json data");
+            Log.d("debugPrint", e.getMessage());
             e.printStackTrace();
         }
+
+        ItemFeedAdapter itemFeedAdapter = new ItemFeedAdapter(this,feedFotoPerfil, feedNome, feedObjetivo, feedPostagemImagem, feedDataRefeicao, feedCalorias);
+
+        try{
+            newsFeed.setAdapter(itemFeedAdapter);
+        }
+        catch (Exception e){
+            Log.d("debugPrintAdapter", "Can't set the adapter.");
+        }
+    }
+
+    public JSONArray getItems(String tag, String jsonData) throws JSONException {
+
+        String dadosPerfil = "";
+        JSONObject jsonObjectPerfil = null;
+        JSONObject jsonObject = new JSONObject(jsonData);
+        JSONArray jsonArray = null;
+        jsonArray = jsonObject.getJSONArray(tag);
+
+        // initialize arrays with the size of the content in the json
+        feedNome            = new String[jsonArray.length()];
+        feedCalorias        = new String[jsonArray.length()];
+        feedObjetivo        = new String[jsonArray.length()];
+        feedFotoPerfil      = new String[jsonArray.length()];
+        feedDataRefeicao    = new String[jsonArray.length()];
+        feedPostagemImagem  = new String[jsonArray.length()];
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject object = jsonArray.getJSONObject(i);
+            dadosPerfil = object.getString("profile");
+            jsonObjectPerfil = new JSONObject(dadosPerfil);
+            //Log.d("debugPrint", jsonObjectPerfil.getString("name"));
+            Log.d("debugPrint", object.toString());
+
+            // profile informations
+            feedNome[i]           = jsonObjectPerfil.getString("name");
+            feedObjetivo[i]       = jsonObjectPerfil.getString("general_goal");
+            feedFotoPerfil[i]     = jsonObjectPerfil.getString("image");
+
+            // post informations
+            feedCalorias[i]       = object.getDouble("energy") + "";
+            feedDataRefeicao[i]   = object.getString("date");
+            feedPostagemImagem[i] = object.getString("image");
+        }
+        return jsonArray;
     }
 }
 
@@ -80,11 +128,6 @@ class Connection{
                     String jsonData = responses.body().string().toString();
 
                     return jsonData;
-
-                    /*JSONArray jsonArray = jsonObject[0].getJSONArray("items");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject object = jsonArray.getJSONObject(i);
-                    }*/
                 } catch (Exception e) {
                     Log.d("debugPrint","Cant get string");
                     return "";

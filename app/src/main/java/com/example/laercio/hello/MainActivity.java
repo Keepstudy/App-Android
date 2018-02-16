@@ -24,7 +24,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
-    // Arrays that contaim de information in the news feed.
+    // Arrays that contain de information in the news feed.
     String[] feedFotoPerfil;
     String[] feedNome;
     String[] feedObjetivo;
@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.d("debugPrint", "cant print json data");
             Log.d("debugPrint", e.getMessage());
-            e.printStackTrace();
         }
 
         ItemFeedAdapter itemFeedAdapter = new ItemFeedAdapter(this,feedFotoPerfil, feedNome, feedObjetivo, feedPostagemImagem, feedDataRefeicao, feedCalorias);

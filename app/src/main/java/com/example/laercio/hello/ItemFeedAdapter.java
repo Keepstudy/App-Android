@@ -3,6 +3,7 @@ package com.example.laercio.hello;
 import android.content.Context;
 import android.media.Image;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,25 +75,34 @@ public class ItemFeedAdapter extends BaseAdapter {
         String objetivo       = feedObjetivo[i];
         String postagemImagem = feedPostagemImagem[i];
 
-
         nomeTextView.setText(nome);
+        nomeTextView.setMaxWidth(200);
+        nomeTextView.setMaxLines(1);
         objetivoTextView.setText(objetivo);
+
         caloriasTextView.setText(calorias);
+        caloriasTextView.setPadding(10,10,10,10);
         dataRefeicaoTextView.setText(dataRefeicao);
 
         // Perfil Picture
-        fotoPerfilImageView.setMaxHeight(80);
-        fotoPerfilImageView.setMaxWidth(80);
-        fotoPerfilImageView.setAdjustViewBounds(true);
-
-        if(fotoPerfil != null)
+        if(fotoPerfil != "null") {
+            fotoPerfilImageView.setMaxHeight(80);
+            fotoPerfilImageView.setMaxWidth(80);
+            fotoPerfilImageView.setAdjustViewBounds(true);
             Picasso.with(feedContexto).load(fotoPerfil).into(fotoPerfilImageView);
+        }
+        else{
+            Log.d("nullpicture", "nullpicture");
+        }
 
-        //Post Picture
-        fotoPostagemImageView.setMaxHeight(280);
-        fotoPostagemImageView.setMaxWidth(320);
+        fotoPostagemImageView.getLayoutParams().height = 300;
+        fotoPostagemImageView.getLayoutParams().width = 500;
         fotoPostagemImageView.setAdjustViewBounds(true);
-        Picasso.with(feedContexto).load(postagemImagem).into(fotoPostagemImageView);
+
+        if(postagemImagem != null) {
+            //Post Picture
+            Picasso.with(feedContexto).load(postagemImagem).into(fotoPostagemImageView);
+        }
 
         return v;
     }
